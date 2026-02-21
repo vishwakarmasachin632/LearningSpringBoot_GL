@@ -7,7 +7,7 @@ A comprehensive learning path for mastering Spring Boot and related technologies
 Foundation concepts of Spring Framework and Spring Boot
 
 ### Topics:
-- [ ] Overview Of Spring Framework
+- [✅] Overview Of Spring Framework
 - [ ] Spring Core Features
 - [ ] Spring Context
 - [ ] Dependency Injection
