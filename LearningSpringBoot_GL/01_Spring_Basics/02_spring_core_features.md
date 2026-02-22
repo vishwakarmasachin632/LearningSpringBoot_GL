@@ -213,11 +213,6 @@ class CarField {
 
 ---
 
-### Kyun important hai?
-- Loose coupling
-- Immutable objects
-- Easy unit testing
-
 ---
 
 ## 🫘 5. Spring Bean
