@@ -171,10 +171,166 @@ Spring kya karta hai?
 
 ## 🎯 11. Interview Questions Focus
 
-- What is Dependency Injection?
-- Constructor vs Setter Injection
-- Why field injection is bad?
-- @Autowired ka role
+## 🎯 Dependency Injection – Interview Notes
+
+---
+
+## ❓ What is Dependency Injection (DI)?
+
+### ✅ What
+
+**Dependency Injection (DI)** is a technique where **Spring provides required objects (dependencies) to a class instead of the class creating them itself**.
+
+### 👉 In simple words
+
+*A class does not create its dependency; Spring gives it.*
+
+### ✅ Why we use DI
+
+* To achieve **loose coupling**
+* To make code **easy to test and maintain**
+* To let **Spring manage object creation**
+
+### ✅ When we use DI
+
+* In almost **every Spring / Spring Boot application**
+* Whenever one class depends on another class
+
+### 📝 One-liner (Interview)
+
+👉 *Dependency Injection allows Spring to supply required objects to a class automatically.*
+
+---
+
+## ❓ Constructor Injection vs Setter Injection
+
+### 🔹 Constructor Injection
+
+#### What
+
+Dependencies are provided through the **constructor**.
+
+#### Why
+
+* Makes dependencies **mandatory**
+* Ensures **object is always in valid state**
+
+#### When
+
+* When dependency is **required** and must not be null
+
+```java
+@Component
+class Car {
+    private final Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+}
+```
+
+---
+
+### 🔹 Setter Injection
+
+#### What
+
+Dependencies are provided through **setter methods**.
+
+#### Why
+
+* Allows **optional dependencies**
+* Dependency can be changed later
+
+#### When
+
+* When dependency is **optional**
+
+```java
+@Component
+class Car {
+    private Engine engine;
+
+    @Autowired
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+}
+```
+
+---
+
+### ✅ Comparison Table
+
+| Point        | Constructor Injection | Setter Injection |
+| ------------ | --------------------- | ---------------- |
+| Dependency   | Mandatory             | Optional         |
+| Null safety  | High                  | Low              |
+| Immutability | Yes                   | No               |
+| Recommended  | ✅ Yes                 | ⚠️ Sometimes     |
+
+---
+
+## ❓ Why Field Injection is Bad?
+
+### What
+
+Dependencies are injected **directly into fields** using `@Autowired`.
+
+### Why it is bad
+
+* ❌ Hard to **unit test**
+* ❌ Breaks **encapsulation**
+* ❌ Dependencies are **hidden**
+* ❌ Cannot make fields `final`
+
+### When it is used
+
+* Only for **quick demos or learning**
+* ❌ Avoid in real projects
+
+```java
+@Component
+class Car {
+    @Autowired
+    private Engine engine; // Field Injection (Not recommended)
+}
+```
+
+### 📝 One-liner
+
+👉 *Field injection is bad because it hides dependencies and makes testing difficult.*
+
+---
+
+## ❓ Role of @Autowired
+
+### What
+
+`@Autowired` tells Spring to **automatically inject the required dependency**.
+
+### Why
+
+* Removes need for manual object creation
+* Enables **Dependency Injection**
+
+### When
+
+* When Spring needs to inject a bean
+* Used with **constructor, setter, or field injection**
+
+```java
+@Autowired
+private Engine engine;
+```
+
+### 📝 One-liner (Interview)
+
+👉 *@Autowired tells Spring to inject the required dependency automatically.*
+
+---
+
 
 ---
 
