@@ -8,9 +8,9 @@ Foundation concepts of Spring Framework and Spring Boot
 
 ### Topics:
 - [✅] Overview Of Spring Framework
-- [ ] Spring Core Features
-- [ ] Spring Context
-- [ ] Dependency Injection
+- [✅ ] Spring Core Features
+- [✅ ] Spring Context
+- [✅ ] Dependency Injection
 - [ ] Spring Bean Lifecycle and Scope
 - [ ] Spring Configuration
 - [ ] Spring Auto-Wiring
