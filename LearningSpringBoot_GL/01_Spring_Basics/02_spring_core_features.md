@@ -72,6 +72,146 @@ Car car = new Car(engine);
 2. Setter Injection
 3. Field Injection (Avoid in real projects)
 
+# Dependency Injection (DI) Types in Spring
+
+---
+
+## 1. Constructor Injection (Recommended)
+
+* **What:** Dependencies are provided through the class constructor.
+* **Why:** Makes dependencies **mandatory**, helps with **immutability**, easier to test.
+* **When to use:** For **required dependencies**.
+
+**Example:**
+
+```java
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Component
+class Engine {
+    public void start() {
+        System.out.println("Engine started");
+    }
+}
+
+@Component
+class Car {
+
+    private final Engine engine;
+
+    // Constructor Injection
+    @Autowired
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void drive() {
+        engine.start();
+        System.out.println("Car is driving");
+    }
+}
+```
+
+**Explanation:**
+
+* `Car` cannot exist without an `Engine`.
+* Spring automatically injects `Engine` when creating `Car`.
+
+---
+
+## 2. Setter Injection
+
+* **What:** Dependencies are provided through **setter methods**.
+* **Why:** Useful for **optional dependencies** or when you need to **change dependency later**.
+* **When to use:** For **optional or changeable dependencies**.
+
+**Example:**
+
+```java
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Component
+class MusicSystem {
+    public void play() {
+        System.out.println("Playing music");
+    }
+}
+
+@Component
+class CarWithMusic {
+
+    private MusicSystem musicSystem;
+
+    // Setter Injection
+    @Autowired
+    public void setMusicSystem(MusicSystem musicSystem) {
+        this.musicSystem = musicSystem;
+    }
+
+    public void playMusic() {
+        if (musicSystem != null) {
+            musicSystem.play();
+        } else {
+            System.out.println("No music system installed");
+        }
+    }
+}
+```
+
+**Explanation:**
+
+* `MusicSystem` is optional.
+* Spring injects it if available.
+
+---
+
+## 3. Field Injection (Avoid in real projects)
+
+* **What:** Dependencies are injected **directly into fields** using `@Autowired`.
+* **Why to avoid:**
+
+  * Hard to **unit test**
+  * Breaks **encapsulation**
+  * Makes code **less maintainable**
+
+**Example:**
+
+```java
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Component
+class CarField {
+
+    @Autowired
+    private Engine engine;  // Field Injection
+
+    public void drive() {
+        engine.start();
+        System.out.println("CarField is driving");
+    }
+}
+```
+
+**Explanation:**
+
+* Works, but **not recommended** for production code.
+* You **cannot easily replace Engine** in unit tests without reflection tricks.
+
+---
+
+### ✅ Summary Table
+
+| DI Type               | How it works                      | Use Case                                | Pros / Cons                                                                              |
+| --------------------- | --------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Constructor Injection | Via constructor                   | Required dependencies                   | Pros: Immutable, easy to test, recommended<br>Cons: Can be verbose if many dependencies  |
+| Setter Injection      | Via setter methods                | Optional dependencies                   | Pros: Flexible, easy to change dependencies<br>Cons: Mutable, less safe than constructor |
+| Field Injection       | Directly on fields (`@Autowired`) | Rarely, mostly for quick tests or demos | Pros: Less code<br>Cons: Hard to test, breaks encapsulation, not recommended             |
+
+
+---
 ### Constructor Injection Example:
 ```java
 @Service
