@@ -265,21 +265,80 @@ public class OrderService {
 
 ## ✂️ 7. Aspect Oriented Programming (AOP) Support
 
-### Problem:
-- Logging
-- Security
-- Transaction
+# Aspect-Oriented Programming (AOP) in Spring
 
-Ye sab har method me likhna padta hai.
+---
 
-### Solution:
-Spring AOP cross-cutting concerns ko alag layer me le jata hai.
+## What is AOP?
 
-### Example:
-- Logging before method
-- Transaction around method
+**Aspect-Oriented Programming (AOP)** is a programming approach that allows you to **separate common (cross-cutting) concerns** like logging, security, and transactions from the main business logic.
 
-(Detail AOP hum later topic me cover karenge)
+In simple words:
+**AOP helps you write common code once and apply it automatically to many places.**
+
+---
+
+## Why do we use AOP?
+
+We use AOP to:
+
+* ❌ Avoid **duplicate code** (same logic written again and again)
+* ✅ Keep **business logic clean and readable**
+* 🔧 Make the application **easy to maintain and update**
+* 🔁 Apply common behavior **across the application automatically**
+
+Without AOP, logging or security code would be repeated in every method.
+
+---
+
+## When do we use AOP?
+
+AOP is used when a functionality is **common to many modules**, such as:
+
+* Logging
+* Security / Authorization
+* Transaction Management
+* Performance Monitoring
+* Exception Handling
+* Auditing
+
+These are called **cross-cutting concerns**.
+
+---
+
+## Simple Example (Conceptual)
+
+Imagine this code written in many methods:
+
+```java
+System.out.println("Method execution started");
+```
+
+With AOP:
+
+* You write this code **only once**
+* Spring automatically runs it **before or after required methods**
+
+Your business code stays clean.
+
+---
+
+## One-Line Summary
+
+> **AOP allows applying common features like logging and security across the application without modifying business code.**
+
+---
+
+## Where AOP fits in Spring?
+
+* Spring AOP is **proxy-based**
+* Works mainly with **methods**
+* Commonly used internally by Spring for:
+
+  * `@Transactional`
+  * Security checks
+  * Logging
+
 
 ---
 
