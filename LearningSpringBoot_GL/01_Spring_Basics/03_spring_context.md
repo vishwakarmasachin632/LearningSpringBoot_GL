@@ -168,9 +168,91 @@ Spring Context:
 
 ## 🎯 10. Interview Points
 
-- What is ApplicationContext?
-- Difference between BeanFactory & ApplicationContext
-- Spring Boot me context ka role
+## 🎯 Spring Context – Interview Notes
+
+---
+
+## ❓ What is ApplicationContext and why and when we use it?
+
+### ✅ What is ApplicationContext?
+
+**ApplicationContext** is the **Spring container** that creates, manages, and provides Spring Beans.
+
+### 👉 In simple words
+
+*ApplicationContext is the brain of Spring that manages all objects (beans).*
+
+### ✅ Why we use it
+
+* To **create and manage beans automatically**
+* To handle **Dependency Injection (DI)**
+* To provide advanced features like **AOP, Events, Internationalization (i18n)**
+
+### ✅ When we use it
+
+* In **Spring and Spring Boot applications**
+* When we need **enterprise-level features** beyond basic bean creation
+
+### 📝 One-liner (Interview Ready)
+
+👉 *ApplicationContext is a Spring container used to manage beans and provide enterprise features.*
+
+---
+
+## ❓ Difference between BeanFactory & ApplicationContext
+
+| Point          | BeanFactory              | ApplicationContext           |
+| -------------- | ------------------------ | ---------------------------- |
+| What it is     | Basic Spring container   | Advanced Spring container    |
+| Bean Loading   | Lazy loading (on demand) | Eager loading (at startup)   |
+| Features       | Only basic DI            | DI + AOP, Events, i18n       |
+| Performance    | Less memory at start     | More memory at startup       |
+| Ease of use    | Less convenient          | Easy and powerful            |
+| Use case       | Simple or small apps     | Enterprise & real-world apps |
+| Default choice | ❌ Rarely used            | ✅ Mostly used                |
+
+### 📝 Simple Explanation
+
+* **BeanFactory says:**
+  👉 “I will create the object only when you ask for it.”
+* **ApplicationContext says:**
+  👉 “I will create all required objects when the app starts.”
+
+### 📝 One-liner
+
+👉 *BeanFactory is basic, ApplicationContext is advanced and preferred.*
+
+---
+
+## ❓ Spring Boot me ApplicationContext ka role
+
+### ✅ Spring Boot me Context kya hai?
+
+**ApplicationContext** Spring Boot ka **central container** hota hai jo poore application ko manage karta hai.
+
+### 👉 Simple words me
+
+*Spring Boot me context application ka brain hota hai.*
+
+### ✅ Context ka role
+
+* Beans **create aur manage** karta hai
+* **Dependency Injection (DI)** handle karta hai
+* **Auto-configuration** apply karta hai
+* **AOP, @Transactional, Events** support deta hai
+* Application start hote hi **required beans load** karta hai
+
+### ⏱️ Context kab create hota hai?
+
+* Jab application start hoti hai
+* `SpringApplication.run()` ke time
+
+### 📝 One-liner (Interview Ready)
+
+👉 *Spring Boot me ApplicationContext beans aur configuration ko manage karta hai.*
+
+---
+
 
 ---
 
