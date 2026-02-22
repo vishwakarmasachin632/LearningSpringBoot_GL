@@ -173,9 +173,50 @@ Database (PostgreSQL)
 
 Common questions:
 - Spring Framework kya hai?
+ ```
+  Spring Framework is a Java framework that makes building applications easier by providing tools for dependency injection,              modularity, and simplified enterprise features.
+  ```
 - IoC ka real meaning?
+  ```
+  IoC (Inversion of Control) is a principle where the framework, not the programmer, controls the creation and management of objects.
+
+   ### Why we use it:
+
+        -To loosen the coupling between classes (less dependent on each other)
+
+        -To make code easier to test, maintain, and reuse
+
+        -let the framework manage object creation and dependencies automatically
+  ```
 - Dependency Injection kyu zaruri hai?
+  ```
+  Dependency Injection (DI) is a technique where Spring automatically provides the objects (dependencies) a class needs instead of the   class creating them itself.
+
+    ###Why we need it:
+
+        -To reduce tight coupling between classes
+
+        -To make code easier to test and maintain
+
+        -To let Spring manage object creation and wiring automatically
+  ```
 - Spring vs Spring Boot?
+  ```
+  # Spring vs Spring Boot
+
+| Feature                  | Spring Framework                                | Spring Boot                                  |
+|---------------------------|-----------------------------------------------|---------------------------------------------|
+| Definition               | A comprehensive Java framework for building enterprise applications. | A framework built on top of Spring to simplify setup and development. |
+| Configuration            | Requires manual XML or annotation-based configuration. | Provides auto-configuration and embedded defaults. |
+| Setup Complexity         | High – requires multiple steps to configure projects and dependencies. | Low – ready-to-use defaults, starter dependencies, and embedded servers. |
+| Server                   | Needs external server (Tomcat, Jetty) setup. | Comes with embedded server (Tomcat/Jetty) by default. |
+| Learning Curve           | Steeper – lots of setup and configuration knowledge required. | Easier – focuses on convention over configuration. |
+| Development Speed        | Slower – manual setup of project structure and dependencies. | Faster – pre-configured starters and tools. |
+| Deployment               | WAR deployment to external servers. | Can run standalone as a JAR with embedded server. |
+| Use Case                 | Large, complex enterprise applications needing full control. | Microservices, REST APIs, and modern web applications. |
+| Dependency Management    | Manual or via Spring modules. | Automatic via “starters” – less manual work. |
+| Community & Ecosystem    | Mature, widely used in enterprise apps. | Rapidly growing, modern development focus. |
+  ```
 
 ---
 
