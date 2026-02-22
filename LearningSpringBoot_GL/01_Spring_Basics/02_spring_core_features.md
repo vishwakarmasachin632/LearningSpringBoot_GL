@@ -417,9 +417,11 @@ Application Ready
 
 ## 🎯 12. Interview Notes
 
-- IoC vs DI difference
-  ```
-  | Point        | IoC (Inversion of Control)                           | DI (Dependency Injection)              |
+---
+
+## 🔹 IoC vs DI Difference
+
+| Point        | IoC (Inversion of Control)                           | DI (Dependency Injection)              |
 | ------------ | ---------------------------------------------------- | -------------------------------------- |
 | What it is   | A **design principle**                               | A **design pattern / technique**       |
 | Meaning      | Control of object creation is given to the framework | Dependencies are injected into a class |
@@ -431,76 +433,82 @@ Application Ready
 
 ---
 
-`Simple Explanation`
+### ✅ Simple Explanation
 
-# IoC says:
-👉 “Don’t create objects yourself, let Spring do it.”
+**IoC says:**
+👉 *“Don’t create objects yourself, let Spring do it.”*
 
-# DI says:
-👉 “Spring will give you the objects you need.”
+**DI says:**
+👉 *“Spring will give you the objects you need.”*
 
-# Relationship (Very Important for Interviews)
-    
-    DI is a way to achieve IoC
-
-# So:
-    IoC = Concept
-    DI = Implementation of that concept
-
-- Why constructor injection is best
-  ```
-  Constructor Injection is best because:
-
-    Dependencies are mandatory (object can’t be created without them)
-
-    Makes code immutable and safe
-
-    Easy to test (dependencies can be passed manually)
-
-    Prevents NullPointerException
-
-    Recommended by Spring best practices
-
-# One-liner:
-👉 Constructor injection makes dependencies required, safe, and easy to test.
-
-  ```
-- What is Spring Bean
-  ```
-    Spring Bean is an object that is created, managed, and controlled by the Spring container.
-
-# In simple words:
-    👉 Any object whose lifecycle is managed by Spring is called a Spring Bean.
-
-# Example idea:
-    When you annotate a class with @Component, @Service, or @Bean, Spring creates its object — that object is a Spring Bean.
-
-# One-liner (for exams/interviews):
-    👉 A Spring Bean is an object managed by the Spring IoC container.
-  ```
-- What is loose coupling
-  ```
-Loose coupling means classes depend as little as possible on each other.
-
-#In simple words:
-
-    👉 One class does not care about the exact implementation of another class.
-
-# Why it is important:
-
-    Easy to change or replace code
-
-    Easy to test and maintain
-
-    Makes applications flexible and scalable
-
-# Example idea:
-    If a class depends on an interface instead of a concrete class, it is loosely coupled.
-
-# One-liner:
-    👉 Loose coupling allows changing one class without affecting others.
-  ```
 ---
+
+### 🔑 Relationship (Very Important for Interviews)
+
+> **DI is a way to achieve IoC**
+
+So:
+
+* **IoC = Concept**
+* **DI = Implementation of that concept**
+
+---
+
+## 🔹 Why Constructor Injection Is Best
+
+**Constructor Injection is best because:**
+
+* Dependencies are **mandatory** (object can’t be created without them)
+* Makes code **immutable and safe**
+* **Easy to test** (dependencies can be passed manually)
+* Prevents **NullPointerException**
+* Recommended by **Spring best practices**
+
+**One-liner:**
+👉 *Constructor injection makes dependencies required, safe, and easy to test.*
+
+---
+
+## 🔹 What Is Spring Bean
+
+**Spring Bean** is an object that is **created, managed, and controlled by the Spring container**.
+
+### In simple words:
+
+👉 *Any object whose lifecycle is managed by Spring is called a Spring Bean.*
+
+### Example idea:
+
+When you annotate a class with `@Component`, `@Service`, or `@Bean`, Spring creates its object — that object is a **Spring Bean**.
+
+**One-liner (for exams/interviews):**
+👉 *A Spring Bean is an object managed by the Spring IoC container.*
+
+---
+
+## 🔹 What Is Loose Coupling
+
+**Loose coupling** means **classes depend as little as possible on each other**.
+
+### In simple words:
+
+👉 *One class does not care about the exact implementation of another class.*
+
+### Why it is important:
+
+* Easy to **change or replace** code
+* Easy to **test and maintain**
+* Makes applications **flexible and scalable**
+
+### Example idea:
+
+If a class depends on an **interface** instead of a concrete class, it is loosely coupled.
+
+**One-liner:**
+👉 *Loose coupling allows changing one class without affecting others.*
+
+---
+
 
 ## ✅ 13. Summary
 
