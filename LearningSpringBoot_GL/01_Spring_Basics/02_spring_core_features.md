@@ -212,19 +212,6 @@ class CarField {
 
 
 ---
-### Constructor Injection Example:
-```java
-@Service
-public class PaymentService {
-
-    private final PaymentGateway gateway;
-
-    // Spring yahan PaymentGateway inject karega
-    public PaymentService(PaymentGateway gateway) {
-        this.gateway = gateway;
-    }
-}
-```
 
 ### Kyun important hai?
 - Loose coupling
