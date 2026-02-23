@@ -177,9 +177,59 @@ Beans Registered in Context
 
 ## 🎯 12. Interview Focus
 
-- Difference: @Component vs @Bean
-- @Configuration ka role
-- Auto-configuration kya hai
+## 1️⃣ Difference: `@Component` vs `@Bean`
+
+Dono ka use **Spring container me object (bean) create karne** ke liye hota hai, lekin kaam karne ka tareeqa alag hai.
+
+### 🔍 Comparison Table
+
+| Point | `@Component` | `@Bean` |
+|------|-------------|---------|
+| Use kahan hota hai | Class ke upar | Method ke upar |
+| Object kaun banata hai | Spring automatically | Developer manually |
+| Detection kaise hota hai | Component scanning se | `@Configuration` class se |
+| Control | Kam control | Zyada control |
+| Use case | Apni classes | Third-party / external classes |
+
+### ✅ `@Component` Example
+```java
+@Component
+public class MyService {
+}
+
+🔹 Jab Spring application start hota hai, to:
+
+    Spring classpath scan karta hai
+
+    @Component wali class detect karta hai
+
+    Automatically object (bean) bana deta hai
+
+✅ @Bean Example
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+
+🔹 Yahan:
+
+Object kaise banega → ye developer decide karta hai
+
+Mostly third-party classes ke liye use hota hai
+
+👉 Conclusion:
+
+Simple classes → @Component
+
+External / customized object creation → @Bean
+
+➡️ Ye dono annotations Spring Framework ka core part hain.
+
 
 ---
 
