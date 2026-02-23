@@ -196,7 +196,7 @@ Dono ka use **Spring container me object (bean) create karne** ke liye hota hai,
 @Component
 public class MyService {
 }
-
+```
 🔹 Jab Spring application start hota hai, to:
 
     Spring classpath scan karta hai
@@ -206,7 +206,7 @@ public class MyService {
     Automatically object (bean) bana deta hai
 
 ✅ @Bean Example
-
+```
 @Configuration
 public class AppConfig {
 
@@ -215,7 +215,7 @@ public class AppConfig {
         return new MyService();
     }
 }
-
+```
 🔹 Yahan:
 
 Object kaise banega → ye developer decide karta hai
@@ -230,6 +230,103 @@ External / customized object creation → @Bean
 
 ➡️ Ye dono annotations Spring Framework ka core part hain.
 
+```
+```
+2️⃣ @Configuration ka Role
+
+@Configuration Spring ko batata hai ki:
+
+👉 Ye class configuration ke liye hai aur isme bean definitions hain
+
+Example
+
+```
+@Configuration
+public class AppConfig {
+}
+```
+🔑 @Configuration ka role:
+
+Spring container ko batata hai:
+👉 “Yahan se beans banenge”
+
+@Bean methods ko manage karta hai
+
+Ensure karta hai ki bean singleton hi rahe
+
+Dependency Injection ko support karta hai
+
+Important Point
+
+@Configuration internally @Component hi hota hai
+
+Isliye ye class bhi Spring container me register hoti hai
+
+👉 Simple words me:
+@Configuration = Blueprint of beans
+
+3️⃣ Auto-Configuration Kya Hai?
+
+Auto-configuration Spring Boot ka sabse powerful feature hai.
+
+🔍 Meaning:
+
+👉 Spring khud se configuration kar deta hai
+👉 Aapko manually setup likhne ki zarurat nahi hoti
+
+Example:
+
+Agar aap project me ye dependency add karte ho:
+```
+spring-boot-starter-web
+```
+
+To Spring Boot automatically:
+
+    Embedded Tomcat configure karta hai
+
+    DispatcherServlet setup karta hai
+
+    Web MVC configuration ready karta hai
+
+🔧 Kaise kaam karta hai?
+
+    Auto-configuration ye cheeze check karta hai:
+
+    Classpath dependencies
+
+    application.properties / yml
+
+    Existing user-defined beans
+
+Main annotation:
+```
+@EnableAutoConfiguration
+```
+
+(Ye annotation internally @SpringBootApplication ka part hota hai)
+
+🎯 Benefits:
+
+-XML / manual config ki zarurat nahi
+
+-Boilerplate code kam
+
+-Fast development
+
+-Production-ready defaults
+
+➡️ Ye feature mainly Spring Boot me milta hai.
+
+# 🔑 One-Line Summary (Interview Ready)
+
+    @Component → Automatic bean creation via scanning
+
+    @Bean → Manual bean creation via method
+
+    @Configuration → Bean configuration class
+
+    Auto-configuration → Spring Boot ka automatic setup mechanism
 
 ---
 
