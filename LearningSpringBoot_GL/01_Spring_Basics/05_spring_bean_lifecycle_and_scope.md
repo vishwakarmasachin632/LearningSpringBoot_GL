@@ -189,10 +189,54 @@ New Bean Instance
 
 ## 🎯 11. Interview Focus Points
 
-- Bean lifecycle steps
-- @PostConstruct vs Constructor
-- Singleton vs Prototype
-- Default bean scope
+# 🌱 Spring Bean Concepts (Short & Simple)
+
+---
+
+## 1️⃣ Bean Lifecycle Steps (Spring)
+
+Spring me **bean lifecycle** ka matlab hota hai: bean ka **create hona → use hona → destroy hona**.
+
+### 🔄 Main Steps:
+1. **Bean Instantiation** – Object create hota hai  
+2. **Dependency Injection** – Dependencies inject hoti hain  
+3. **@PostConstruct** – Initialization logic run hota hai  
+4. **Bean Ready to Use**  
+5. **@PreDestroy** – Bean destroy hone se pehle cleanup
+
+➡️ Ye sab process **:contentReference[oaicite:0]{index=0}** automatically handle karta hai.
+
+---
+
+## 2️⃣ `@PostConstruct` vs Constructor
+
+| Point | Constructor | @PostConstruct |
+|------|------------|----------------|
+| Kab call hota hai | Object create hote hi | Dependencies inject hone ke baad |
+| Dependency available? | ❌ Nahi | ✅ Haan |
+| Use kab kare | Basic setup | Initialization logic |
+
+### ✅ Best Practice:
+- **Constructor** → Object creation  
+- **@PostConstruct** → Initialization logic (DB call, validation)
+
+---
+
+## 3️⃣ Singleton vs Prototype
+
+| Feature | Singleton | Prototype |
+|-------|-----------|-----------|
+| Objects | Sirf **1 object** | Har request pe **new object** |
+| Default? | ✅ Haan | ❌ Nahi |
+| Memory | Kam use hoti | Zyada use hoti |
+| Use case | Service, Repository | Stateful objects |
+
+---
+
+## 4️⃣ Default Bean Scope
+
+👉 Spring ka **default bean scope = `singleton`**
+
 
 ---
 
