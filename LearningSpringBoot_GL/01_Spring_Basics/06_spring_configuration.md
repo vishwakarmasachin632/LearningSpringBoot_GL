@@ -218,25 +218,24 @@ public class AppConfig {
 ```
 🔹 Yahan:
 
-Object kaise banega → ye developer decide karta hai
+    Object kaise banega → ye developer decide karta hai
 
-Mostly third-party classes ke liye use hota hai
+    Mostly third-party classes ke liye use hota hai
 
 👉 Conclusion:
 
-Simple classes → @Component
+    Simple classes → @Component
 
-External / customized object creation → @Bean
+    External / customized object creation → @Bean
 
 ➡️ Ye dono annotations Spring Framework ka core part hain.
 
-```
-```
 2️⃣ @Configuration ka Role
 
-@Configuration Spring ko batata hai ki:
+    @Configuration Spring ko batata hai ki:
 
-👉 Ye class configuration ke liye hai aur isme bean definitions hain
+    
+    👉 Ye class configuration ke liye hai aur isme bean definitions hain
 
 Example
 
@@ -248,26 +247,28 @@ public class AppConfig {
 🔑 @Configuration ka role:
 
 Spring container ko batata hai:
-👉 “Yahan se beans banenge”
+    
+    👉 “Yahan se beans banenge”
 
-@Bean methods ko manage karta hai
+    @Bean methods ko manage karta hai
 
-Ensure karta hai ki bean singleton hi rahe
+    Ensure karta hai ki bean singleton hi rahe
 
-Dependency Injection ko support karta hai
+    Dependency Injection ko support karta hai
 
 Important Point
 
-@Configuration internally @Component hi hota hai
+    @Configuration internally @Component hi hota hai
 
-Isliye ye class bhi Spring container me register hoti hai
+    Isliye ye class bhi Spring container me register hoti hai
 
 👉 Simple words me:
-@Configuration = Blueprint of beans
+    
+    @Configuration = Blueprint of beans
 
 3️⃣ Auto-Configuration Kya Hai?
 
-Auto-configuration Spring Boot ka sabse powerful feature hai.
+    Auto-configuration Spring Boot ka sabse powerful feature hai.
 
 🔍 Meaning:
 
