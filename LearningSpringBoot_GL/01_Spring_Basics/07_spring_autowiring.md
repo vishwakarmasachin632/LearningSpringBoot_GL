@@ -199,9 +199,64 @@ Inject Bean
 
 ## 🎯 13. Interview Focus
 
-- @Autowired vs @Qualifier
-- @Primary ka role
-- Multiple beans handling
+---
+# 🌱 Spring Short Notes (Interview-Friendly)
+
+---
+
+**## 🔹 `@Autowired` vs `@Qualifier`**
+
+### `@Autowired`
+- 👉 Type ke base par bean inject karta hai  
+- 👉 Problem aati hai jab **same type ke multiple beans** ho
+
+### `@Qualifier`
+- 👉 Bean ka **name specify** karke exact bean inject karta hai  
+- 👉 `@Autowired` ke saath use hota hai to **ambiguity solve** hoti hai  
+
+### Example
+```java
+    @Autowired
+    @Qualifier("mysqlRepo")
+    private UserRepository repo;
+```
+**🔹 @Primary ka Role**
+
+    Jab same type ke multiple beans ho
+
+    Aur @Qualifier use nahi kiya gaya ho
+
+    To @Primary wala bean by default inject hota hai
+
+Example:
+```
+@Primary
+@Component
+class MysqlRepository implements UserRepository {
+}
+```
+
+**🔹 Multiple Beans Handling (Short Summary)**
+
+Spring me multiple beans handle karne ke 3 main ways:
+
+    1️⃣ @Qualifier – exact bean choose karne ke liye
+    2️⃣ @Primary – default bean mark karne ke liye
+    3️⃣ Collection Injection – sabhi beans ek sath inject karne ke liye
+
+Example:
+```
+@Autowired
+List<PaymentService> services;
+
+```
+🧠 One-Line Memory Tip (Interview)
+
+Multiple beans ho → @Qualifier ya @Primary use karo, warna Spring confuse ho jayega.
+
+
+
+
 
 ---
 
