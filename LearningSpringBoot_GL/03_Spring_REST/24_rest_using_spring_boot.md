@@ -162,6 +162,29 @@ POST /employees
 ```
 
 ---
+### 🌐 HTTP STATUS CODES (Overview)
+✅ What are HTTP Status Codes?
+
+They are responses sent by the server to tell the client (browser/frontend) what happened with the request.
+```
+X.X.X
+│
+├── 1XX → Informational
+├── 2XX → Success
+├── 3XX → Redirection
+├── 4XX → Client Error
+└── 5XX → Server Error
+```
+
+# 🔵 1️⃣ 1XX – INFORMATIONAL
+    ✅ Meaning: 
+        Request received, still processing.
+🔹 Common Codes
+    100 Continue → Continue sending request
+    101 Switching Protocols → Protocol changed (HTTP → WebSocket)
+
+    
+---
 
 ## 1️⃣2️⃣ Interview Questions
 
