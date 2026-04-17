@@ -162,10 +162,12 @@ POST /employees
 ```
 
 ---
-### 🌐 HTTP STATUS CODES (Overview)
-✅ What are HTTP Status Codes?
+# 🌐 HTTP STATUS CODES (Overview)
+
+## ✅ What are HTTP Status Codes?
 
 They are responses sent by the server to tell the client (browser/frontend) what happened with the request.
+
 ```
 X.X.X
 │
@@ -176,14 +178,61 @@ X.X.X
 └── 5XX → Server Error
 ```
 
-# 🔵 1️⃣ 1XX – INFORMATIONAL
-    ✅ Meaning: 
-        Request received, still processing.
-🔹 Common Codes
-    100 Continue → Continue sending request
-    101 Switching Protocols → Protocol changed (HTTP → WebSocket)
+---
 
-    
+### 🔵 1️⃣ 1XX – INFORMATIONAL
+**✅ Meaning:**  
+Request received, still processing.
+
+**🔹 Common Codes**
+- 100 Continue → Continue sending request  
+- 101 Switching Protocols → Protocol changed (HTTP → WebSocket)
+
+---
+
+### 🟢 2️⃣ 2XX – SUCCESS
+**✅ Meaning**  
+Request successfully processed.
+
+**🔹 Important Codes**
+- 200 OK → Request successful  
+- 201 Created → Resource created (POST)  
+- 204 No Content → Success but no response body  
+
+---
+
+### 🟡 3️⃣ 3XX – REDIRECTION
+**✅ Meaning**  
+Client must take additional action (redirect)
+
+**🔹 Common Codes**
+- 301 Moved Permanently  
+- 302 Found (Temporary redirect)  
+- 304 Not Modified  
+
+---
+
+### 🔴 4️⃣ 4XX – CLIENT ERROR
+**✅ Meaning**  
+Error caused by client (user/frontend)
+
+**🔹 Important Codes**
+- 400 Bad Request → Invalid input  
+- 401 Unauthorized → Not logged in  
+- 403 Forbidden → No permission  
+- 404 Not Found → Resource not found  
+
+---
+
+### 🔥 5️⃣ 5XX – SERVER ERROR
+**✅ Meaning**  
+Error caused by server/backend
+
+**🔹 Important Codes**
+- 500 Internal Server Error → Generic error  
+- 502 Bad Gateway → Microservice failure  
+- 503 Service Unavailable → Server down  
+
 ---
 
 ## 1️⃣2️⃣ Interview Questions
