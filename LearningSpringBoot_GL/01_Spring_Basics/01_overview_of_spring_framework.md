@@ -77,6 +77,7 @@ Is concept ko bolte hain:
 
 Dependency Injection ka matlab:
 > **Ek object ko doosre object par dependent hone ke liye Spring inject karta hai**
+> DI = Spring injects required objects
 
 ### Example:
 ```java
