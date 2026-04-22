@@ -56,6 +56,7 @@ Is concept ko bolte hain:
 ---
 
 ## 🔁 2. Inversion of Control (IoC)
+> **IOC = Control is given to Spring**
 
 ### Pehle (Without Spring)
 - Developer decide karta tha object ka lifecycle
