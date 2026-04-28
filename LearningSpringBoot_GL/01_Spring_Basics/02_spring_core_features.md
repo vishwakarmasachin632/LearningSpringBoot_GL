@@ -414,7 +414,13 @@ Application Ready
 ```
 
 ---
+# 🧩 What is an Annotation in Java?
 
+* An annotation in Java is a special type of metadata (information about your code) that you add above classes, methods, or variables.
+
+** 👉 It does not change the logic directly
+** 👉 It tells the compiler / framework how to behave
+---
 ## 🎯 12. Interview Notes
 
 ---
