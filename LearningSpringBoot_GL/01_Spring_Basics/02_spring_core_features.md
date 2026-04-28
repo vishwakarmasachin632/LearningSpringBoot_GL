@@ -425,6 +425,236 @@ Application Ready
 
 ---
 
+# ⚔️ Spring MVC vs WebFlux (Detailed Guide)
+
+A complete comparison to understand when and why to use **Spring MVC** vs **Spring WebFlux** in real-world applications.
+
+---
+
+# 📌 1. Overview
+
+## 🔹 Spring MVC
+
+* Traditional web framework in Spring
+* Based on **Servlet API**
+* Uses **blocking (synchronous)** programming model
+
+## 🔹 Spring WebFlux
+
+* Modern **reactive web framework**
+* Built on **non-blocking I/O**
+* Uses **Reactive Streams (Project Reactor)**
+
+---
+
+# ⚙️ 2. Core Differences
+
+| Feature           | Spring MVC             | WebFlux                  |
+| ----------------- | ---------------------- | ------------------------ |
+| Type              | Blocking               | Non-blocking             |
+| Programming Style | Imperative             | Reactive                 |
+| Thread Model      | One thread per request | Event loop (few threads) |
+| Scalability       | Limited                | High                     |
+| Performance       | Good for low load      | Better under high load   |
+| Complexity        | Easy                   | Complex                  |
+
+---
+
+# 🧠 3. Thread Model (Most Important)
+
+## 🔹 Spring MVC (Blocking)
+
+Flow:
+
+```
+Client Request → Thread Assigned → Processing → Response → Thread Released
+```
+
+👉 Each request gets its own thread
+👉 If DB/API call is slow → thread waits (blocked)
+
+❌ Problem:
+
+* Threads get exhausted under high traffic
+* Memory usage increases
+
+---
+
+## 🔹 WebFlux (Non-Blocking)
+
+Flow:
+
+```
+Client Request → Event Loop → Async Processing → Callback → Response
+```
+
+👉 Uses small number of threads
+👉 Does NOT wait for I/O operations
+👉 Uses callbacks/events when data is ready
+
+✅ Benefit:
+
+* Handles thousands of requests with fewer threads
+* Better resource utilization
+
+---
+
+# ⚡ 4. Blocking vs Non-Blocking (Deep Explanation)
+
+## 🔹 Blocking (Spring MVC)
+
+Example:
+
+```java
+User user = userRepository.findById(id); // waits here
+```
+
+👉 Thread stops until DB responds
+👉 Waste of CPU time during wait
+
+---
+
+## 🔹 Non-Blocking (WebFlux)
+
+Example:
+
+```java
+Mono<User> user = userRepository.findById(id);
+```
+
+👉 Thread does NOT wait
+👉 System handles other requests meanwhile
+
+---
+
+# 🔁 5. Programming Model
+
+## 🔹 Spring MVC (Imperative)
+
+* Step-by-step execution
+* Easy to read & debug
+
+```java
+User user = service.getUser();
+return user;
+```
+
+## 🔹 WebFlux (Reactive)
+
+* Uses streams of data
+* Functional style
+
+```java
+return service.getUser()
+       .map(user -> transform(user));
+```
+
+---
+
+# 📊 6. Performance Comparison
+
+## 🔹 Spring MVC
+
+* Performs well for:
+
+  * Small to medium applications
+  * Low concurrency
+
+## 🔹 WebFlux
+
+* Performs better for:
+
+  * High traffic systems
+  * I/O heavy apps (DB/API calls)
+  * Streaming apps
+
+---
+
+# 🧩 7. Real-World Use Cases
+
+## ✅ Use Spring MVC when:
+
+* CRUD applications
+* Admin dashboards
+* Monolithic applications
+* Team is beginner
+
+## ✅ Use WebFlux when:
+
+* Real-time apps (chat, notifications)
+* High concurrency systems
+* Microservices with heavy API calls
+* Streaming applications
+
+---
+
+# ❌ 8. Limitations
+
+## 🔹 Spring MVC
+
+* Poor scalability under heavy load
+* Thread blocking issue
+
+## 🔹 WebFlux
+
+* Hard to learn
+* Debugging is complex
+* Not all libraries support reactive
+
+---
+
+# 🧠 9. Key Concepts in WebFlux
+
+* Mono → 0 or 1 element
+* Flux → multiple elements
+* Reactive Streams
+* Backpressure
+
+---
+
+# 🧪 10. Code Comparison
+
+## Spring MVC
+
+```java
+@GetMapping("/user")
+public User getUser() {
+    return service.getUser();
+}
+```
+
+## WebFlux
+
+```java
+@GetMapping("/user")
+public Mono<User> getUser() {
+    return service.getUser();
+}
+```
+
+---
+
+# 🎯 11. Interview Summary
+
+👉 Spring MVC is a **blocking, thread-per-request** model suitable for simple applications.
+
+👉 WebFlux is a **non-blocking, reactive** model designed for high-performance and scalable systems.
+
+---
+
+# 🔥 Final One-Line Difference
+
+👉 Spring MVC = Easy but blocks threads
+👉 WebFlux = Scalable but complex
+
+---
+
+# 🏁 Conclusion
+
+* Start with Spring MVC (recommended for beginners)
+* Move to WebFlux when building scalable systems
+---
+
 ## 🔹 IoC vs DI Difference
 
 | Point        | IoC (Inversion of Control)                           | DI (Dependency Injection)              |
