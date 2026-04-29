@@ -432,9 +432,9 @@ A complete comparison to understand when and why to use **Spring MVC** vs **Spri
 ---
 * 🧠 1. Basic Idea
 
-** 👉 Spring MVC = works like a waiter handling one customer at a time.
+👉 Spring MVC = works like a waiter handling one customer at a time.
 
-** 👉 WebFlux = works like a smart waiter handling many customers at once
+👉 WebFlux = works like a smart waiter handling many customers at once
 ---
 
 # 📌 1. Overview
