@@ -420,6 +420,8 @@ Application Ready
 
 ** 👉 It does not change the logic directly
 ** 👉 It tells the compiler / framework how to behave
+
+** In Other Words: Annotation is a special type of metadata which is used to tells the compiler/framwork how to behave, Basically it is used to give the information about our code.
 ---
 ## 🎯 12. Interview Notes
 
