@@ -264,6 +264,332 @@ JPA is only a specification (rules), not actual working code.
 
 ---
 
+# 📦 Lazy Loading vs Eager Loading – Complete Guide
+
+## 📌 Introduction
+
+In application development (especially backend like **Spring Boot**, **Hibernate**, or frontend like React),  
+**Lazy Loading** and **Eager Loading** define **how and when data is fetched from the database**.
+
+---
+
+# ⚡ 1. Lazy Loading
+
+## 🔹 Definition
+
+**Lazy Loading = Load data only when required**
+
+👉 Data is fetched **on-demand**
+
+---
+
+## 🧠 Real-Life Example
+
+Netflix:
+- Homepage loads first
+- Movie details load only when clicked
+
+---
+
+## 💻 Example (Spring Boot / JPA)
+
+```java
+@Entity
+public class Order {
+
+    @Id
+    private Long id;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<Item> items;
+}
+```
+
+## 🔍 What happens internally?
+
+```java
+Order order = orderRepo.findById(1);
+```
+
+SQL:
+
+```sql
+SELECT * FROM orders WHERE id = 1;
+```
+
+👉 Items NOT loaded yet
+
+```java
+order.getItems();
+```
+
+SQL:
+
+```sql
+SELECT * FROM items WHERE order_id = 1;
+```
+
+👉 Now items are loaded
+
+## ✅ Advantages
+
+- 🚀 Fast initial load
+- 💾 Less memory usage
+- 📉 Optimized performance
+
+## ❌ Disadvantages
+
+- ⚠️ N+1 Query Problem
+- ⛔ LazyInitializationException
+
+---
+
+# ⚡ 2. Eager Loading
+
+## 🔹 Definition
+
+**Eager Loading = Load everything immediately**
+
+👉 Data is fetched in one go
+
+---
+
+## 🧠 Real-Life Example
+
+Amazon:
+
+Product + reviews + images load together
+
+---
+
+## 💻 Example
+
+```java
+@Entity
+public class Order {
+
+    @Id
+    private Long id;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    private List<Item> items;
+}
+```
+
+## 🔍 What happens internally?
+
+```java
+Order order = orderRepo.findById(1);
+```
+
+SQL:
+
+```sql
+SELECT o.*, i.*
+FROM orders o
+LEFT JOIN items i ON o.id = i.order_id
+WHERE o.id = 1;
+```
+
+👉 Order + Items loaded together
+
+## ✅ Advantages
+
+- ⚡ No extra DB calls
+- 👍 Easy to use
+
+## ❌ Disadvantages
+
+- 🐢 Slow initial load
+- 💥 Loads unnecessary data
+- 📈 High memory usage
+
+---
+
+# ⚔️ Lazy vs Eager (Comparison)
+
+| Feature | Lazy Loading 🐢 | Eager Loading ⚡ |
+|---|---|---|
+| Loading Time | On-demand | Immediate |
+| Initial Speed | Fast | Slow |
+| Memory Usage | Low | High |
+| DB Queries | Multiple | Single |
+| Performance | Better (large) | Poor (large) |
+
+---
+
+# ⚠️ 3. N+1 Query Problem
+
+## ❓ What is it?
+
+```java
+List<Order> orders = orderRepo.findAll();
+
+for(Order o : orders){
+    o.getItems();
+}
+```
+
+## 🔥 SQL Generated
+
+```sql
+SELECT * FROM orders;
+
+SELECT * FROM items WHERE order_id = 1;
+SELECT * FROM items WHERE order_id = 2;
+SELECT * FROM items WHERE order_id = 3;
+```
+
+👉 Total = N + 1 queries ❌
+
+## ✅ Solution
+
+```java
+@Query("SELECT o FROM Order o JOIN FETCH o.items")
+List<Order> findAllWithItems();
+```
+
+---
+
+# ❌ 4. LazyInitializationException
+
+## ❓ Problem
+
+```java
+Order order = orderRepo.findById(1);
+session.close();
+
+order.getItems(); // ❌ ERROR
+```
+
+## 💥 Error
+
+```text
+LazyInitializationException: could not initialize proxy
+```
+
+## ✅ Solutions
+
+### ✔️ Use DTO
+
+```java
+public class OrderDTO {
+    private Long id;
+    private List<ItemDTO> items;
+}
+```
+
+### ✔️ Use Fetch Join
+
+```java
+@Query("SELECT o FROM Order o JOIN FETCH o.items WHERE o.id = :id")
+Order findOrderWithItems(Long id);
+```
+
+### ✔️ Open Session in View (not recommended)
+
+```properties
+spring.jpa.open-in-view=true
+```
+
+---
+
+# 🎯 5. When to Use What?
+
+## ✅ Use Lazy Loading
+
+- Large datasets
+- Optional relationships
+- Performance optimization
+
+## ✅ Use Eager Loading
+
+- Small datasets
+- Always-needed data
+
+---
+
+# 🔥 6. Real-World Example (ReVastra)
+
+## 👕 Laundry Order System
+
+Order → List<LaundryItems>
+
+👉 Best Practice:
+
+- Use LAZY for listing page
+- Use FETCH JOIN for detail page
+
+---
+
+# 🧠 7. Interview MCQs
+
+## Q1. Default fetch type for @OneToMany?
+
+A. EAGER  
+B. LAZY  
+C. NONE  
+D. BOTH  
+
+👉 Answer: B
+
+---
+
+## Q2. Default fetch type for @ManyToOne?
+
+👉 Answer: EAGER
+
+---
+
+## Q3. Which causes N+1 problem?
+
+👉 Answer: Lazy Loading
+
+---
+
+## Q4. Lazy loading means?
+
+👉 Answer: Load on demand
+
+---
+
+## Q5. Eager loading disadvantage?
+
+👉 Answer: High memory usage
+
+---
+
+## Q6. Best solution for N+1?
+
+👉 Answer: Fetch Join
+
+---
+
+## Q7. LazyInitializationException occurs when?
+
+👉 Answer: Session closed
+
+---
+
+## Q8. Best practice?
+
+👉 Answer: Use LAZY + Fetch Join
+
+---
+
+# 🏁 Final Conclusion
+
+Lazy Loading → Efficient & optimized  
+Eager Loading → Simple but heavy
+
+👉 Best approach:
+
+✔ Use LAZY by default  
+✔ Use FETCH JOIN when needed  
+❌ Avoid unnecessary EAGER loading
+
+---
+
 # 📌 3. What is Spring Data JPA?
 
 ## 🔹 Definition
