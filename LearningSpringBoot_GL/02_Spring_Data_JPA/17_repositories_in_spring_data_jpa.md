@@ -252,7 +252,8 @@ Spring internally proxy object banata hai aur methods implement karta hai.
 ### Interview Answer
 
 > Spring Data JPA provides the implementation automatically at runtime using proxy classes. We only create the repository interface.
-> Note: **Proxy class** is a runtime-generated helper class created by Spring. It works as a middleman between our code and the actual logic. In Spring Data JPA, we only create repository interfaces, and Spring creates proxy implementations at runtime to handle methods like save, findById, findAll, and delete. Proxy classes are also used for features like transaction management, security, logging, and exception handling.
+
+#= Note: **Proxy class** is a runtime-generated helper class created by Spring. It works as a middleman between our code and the actual logic. In Spring Data JPA, we only create repository interfaces, and Spring creates proxy implementations at runtime to handle methods like save, findById, findAll, and delete. Proxy classes are also used for features like transaction management, security, logging, and exception handling.
 
 ---
 
