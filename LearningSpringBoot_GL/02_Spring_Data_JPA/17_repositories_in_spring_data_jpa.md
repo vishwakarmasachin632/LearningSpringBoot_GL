@@ -168,11 +168,186 @@ PostgreSQL
 
 ## 🔟 Interview Questions
 
-1. Repository kya hota hai?
-2. JpaRepository vs CrudRepository
-3. Repository interface ka implementation kaun karta hai?
-4. Repository ko @Repository kyun annotate karte hain?
-5. Service layer kyun zaroori hai?
+## 1. Repository kya hota hai?
+
+**Repository** ek layer/interface hoti hai jo database ke saath communication karti hai.
+
+Simple words mein:
+
+> Repository ka kaam hota hai database se data save, fetch, update, delete karna.
+
+### Example
+
+```java
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+```
+
+Iske through hum directly methods use kar sakte hain:
+
+```java
+userRepository.save(user);
+userRepository.findById(1L);
+userRepository.findAll();
+userRepository.deleteById(1L);
+```
+
+### Interview Answer
+
+> Repository is a data access layer in Spring Boot. It is responsible for interacting with the database and performing CRUD operations.
+
+---
+
+## 2. JpaRepository vs CrudRepository
+
+| Point | CrudRepository | JpaRepository |
+|---|---|---|
+| Purpose | Basic CRUD operations | CRUD + JPA-specific advanced features |
+| Methods | save, findById, findAll, delete | All CrudRepository methods + pagination + sorting + batch operations |
+| Parent | Base repository | Extends PagingAndSortingRepository and CrudRepository |
+| Use case | Simple CRUD | Real-world Spring Boot projects |
+
+### Example using CrudRepository
+
+```java
+public interface UserRepository extends CrudRepository<User, Long> {
+}
+```
+
+### Example using JpaRepository
+
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+```
+
+**JpaRepository is more powerful.**
+
+### Interview Answer
+
+> CrudRepository provides basic CRUD operations, while JpaRepository provides CRUD plus pagination, sorting, flushing, and batch operations. In most Spring Boot JPA projects, we prefer JpaRepository.
+
+---
+
+## 3. Repository interface ka implementation kaun karta hai?
+
+Repository interface ka implementation **Spring Data JPA automatically runtime par create karta hai**.
+
+Hum sirf interface banate hain:
+
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+```
+
+Hum implementation class manually nahi banate:
+
+```java
+// UserRepositoryImpl manually create karne ki zaroorat nahi hoti
+```
+
+Spring internally proxy object banata hai aur methods implement karta hai.
+
+### Interview Answer
+
+> Spring Data JPA provides the implementation automatically at runtime using proxy classes. We only create the repository interface.
+
+---
+
+## 4. Repository ko `@Repository` kyun annotate karte hain?
+
+`@Repository` Spring ko batata hai ki ye class/interface **database access layer** ka part hai.
+
+### Benefits
+
+1. Spring isko bean ke form mein manage karta hai.
+2. Exception translation hota hai.
+3. Code layered architecture follow karta hai.
+
+### Example
+
+```java
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+```
+
+### Important Point
+
+> Agar repository interface `JpaRepository` extend kar raha hai, to `@Repository` lagana optional hai, kyunki Spring Data JPA automatically detect kar leta hai.
+
+### Interview Answer
+
+> `@Repository` marks a class as a persistence layer component. It also helps Spring convert database-related exceptions into Spring’s DataAccessException hierarchy. In Spring Data JPA repositories, it is usually optional because Spring detects repository interfaces automatically.
+
+---
+
+## 5. Service layer kyun zaroori hai?
+
+**Service layer business logic handle karti hai.**
+
+Controller ka kaam request/response handle karna hota hai.  
+Repository ka kaam database operations karna hota hai.  
+Service ka kaam business rules apply karna hota hai.
+
+### Application Flow
+
+```text
+Controller → Service → Repository → Database
+```
+
+### Example
+
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public User registerUser(User user) {
+        // business logic
+        if (user.getEmail() == null) {
+            throw new RuntimeException("Email required");
+        }
+
+        return userRepository.save(user);
+    }
+}
+```
+
+### Service Layer Benefits
+
+| Benefit | Meaning |
+|---|---|
+| Business logic separation | Logic controller mein mix nahi hota |
+| Reusability | Same service multiple controllers use kar sakte hain |
+| Testing easy | Service methods ko unit test kar sakte hain |
+| Clean architecture | Code maintainable hota hai |
+| Transaction management | `@Transactional` service layer mein use hota hai |
+
+### Interview Answer
+
+> Service layer is necessary to keep business logic separate from controller and repository. Controller handles HTTP requests, repository handles database operations, and service handles business rules. It makes the application clean, reusable, testable, and maintainable.
+
+---
+
+# Best Interview Flow Answer
+
+```text
+In Spring Boot, we usually follow layered architecture:
+
+Controller layer handles client requests.
+Service layer contains business logic.
+Repository layer communicates with the database.
+
+Repository interfaces like JpaRepository are implemented automatically by Spring Data JPA at runtime using proxy classes.
+
+CrudRepository provides basic CRUD operations, while JpaRepository provides additional JPA features like pagination, sorting, flushing, and batch operations.
+
+Service layer is important because it separates business logic from controller and repository, making the code clean, reusable, and testable.
+```
 
 ---
 
