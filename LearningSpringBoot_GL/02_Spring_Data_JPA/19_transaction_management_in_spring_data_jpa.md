@@ -39,6 +39,268 @@ Dono ka ek transaction hona zaroori hai.
 - **D – Durability** → Commit ke baad data safe
 
 ---
+# 3️⃣ ACID Properties in DBMS / Transaction Management
+
+ACID properties are very important in database transactions.
+
+ACID stands for:
+
+```text
+A → Atomicity
+C → Consistency
+I → Isolation
+D → Durability
+```
+
+These properties make sure that database transactions are safe, reliable, and consistent.
+
+---
+
+## A – Atomicity
+
+### Meaning
+
+Atomicity means:
+
+> All operations in a transaction should complete successfully, or none should happen.
+
+Simple words:
+
+> All or nothing.
+
+---
+
+### Example
+
+Bank transfer:
+
+```text
+Account A se ₹1000 debit
+Account B me ₹1000 credit
+```
+
+Both operations should happen together.
+
+If debit is successful but credit fails, then the debit should also be rolled back.
+
+---
+
+### Without Atomicity Problem
+
+```text
+Account A debited
+Account B not credited
+```
+
+This creates wrong data.
+
+---
+
+### With Atomicity
+
+```text
+Debit successful + Credit successful = Commit
+Debit successful + Credit failed = Rollback
+```
+
+---
+
+### Interview Answer
+
+> Atomicity means a transaction is treated as a single unit. Either all operations are completed successfully, or none of them are applied. It follows the all-or-nothing rule.
+
+---
+
+## C – Consistency
+
+### Meaning
+
+Consistency means:
+
+> A transaction should move the database from one valid state to another valid state.
+
+Simple words:
+
+> Data should always remain correct and valid.
+
+---
+
+### Example
+
+Suppose account balance cannot be negative.
+
+```text
+Account balance = ₹500
+Withdraw amount = ₹1000
+```
+
+This transaction should not be allowed because it breaks the rule.
+
+---
+
+### Why Consistency is Important?
+
+Consistency makes sure that:
+
+- Database rules are followed
+- Constraints are maintained
+- Invalid data is not saved
+- Data remains accurate
+
+---
+
+### Interview Answer
+
+> Consistency means a transaction should keep the database in a valid state before and after execution. It ensures that all rules, constraints, and validations are properly maintained.
+
+---
+
+## I – Isolation
+
+### Meaning
+
+Isolation means:
+
+> Multiple transactions running at the same time should not affect each other incorrectly.
+
+Simple words:
+
+> Parallel transactions should be safe.
+
+---
+
+### Example
+
+Two users are booking the last ticket at the same time.
+
+```text
+User A tries to book ticket
+User B also tries to book same ticket
+```
+
+Isolation ensures that only one user gets the ticket.
+
+---
+
+### Without Isolation Problem
+
+```text
+Same ticket booked by two users
+```
+
+This creates data inconsistency.
+
+---
+
+### With Isolation
+
+```text
+Only one transaction succeeds
+Other transaction waits or fails
+```
+
+---
+
+### Interview Answer
+
+> Isolation means multiple transactions can run at the same time without interfering with each other. It ensures that parallel transactions produce correct and consistent results.
+
+---
+
+## D – Durability
+
+### Meaning
+
+Durability means:
+
+> Once a transaction is committed, the data should be permanently saved.
+
+Simple words:
+
+> Commit ke baad data safe.
+
+---
+
+### Example
+
+If money transfer is successful and transaction is committed:
+
+```text
+Account A debited
+Account B credited
+Transaction committed
+```
+
+Now even if the system crashes, the committed data should not be lost.
+
+---
+
+### Why Durability is Important?
+
+Durability ensures:
+
+- Committed data is permanently stored
+- System crash ke baad bhi data safe rahe
+- Database recovery possible ho
+- User ka saved data lost na ho
+
+---
+
+### Interview Answer
+
+> Durability means once a transaction is committed, the changes are permanently saved in the database. Even if the system crashes after commit, the committed data should remain safe.
+
+---
+
+# ACID Properties Summary Table
+
+| Property | Meaning | Simple Line |
+|---|---|---|
+| Atomicity | Complete transaction or nothing | All or nothing |
+| Consistency | Database remains valid | Valid state |
+| Isolation | Transactions do not disturb each other | Parallel transactions safe |
+| Durability | Committed data is permanent | Commit ke baad data safe |
+
+---
+
+# Real-Life Example of ACID
+
+Bank money transfer:
+
+```text
+Transfer ₹1000 from Account A to Account B
+```
+
+| ACID Property | Role |
+|---|---|
+| Atomicity | Debit and credit both should happen, otherwise rollback |
+| Consistency | Balance should not become invalid |
+| Isolation | Two transfers should not corrupt account balance |
+| Durability | After successful transfer, data should remain saved |
+
+---
+
+# Best Interview Answer
+
+```text
+ACID properties are used to make database transactions reliable and safe.
+
+Atomicity means all operations in a transaction should complete successfully, or none should happen.
+
+Consistency means the database should move from one valid state to another valid state.
+
+Isolation means multiple transactions running at the same time should not interfere with each other.
+
+Durability means once a transaction is committed, the data should be permanently saved even if the system crashes.
+```
+
+---
+
+# One-line Answer
+
+> ACID properties ensure that database transactions are reliable, consistent, safe during parallel execution, and permanently saved after commit.
+
+---
 
 ## 4️⃣ Spring Transaction Management ka Role
 Spring:
